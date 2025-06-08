@@ -1,7 +1,7 @@
 # AnimalTracker
 Projet full-stack Symfony (backend) + Angular (frontend) de gestion d'observations animalières.
 
-Objectifs de l'application :
+Objectifs de l'application:
 
 
 Consigner des observations d’animaux (localisation, date, espèce...)

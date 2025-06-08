@@ -1,0 +1,47 @@
+@let animalList = animals | async;
+@if (animalList !== null){
+  <h1>Liste des Animaux</h1>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Nom Commun</th>
+        <th>Nom Scientifique</th>
+        <th>Embranchement</th>
+        <th>Classe</th>
+        <th>Ordre</th>
+        <th>Sous-Ordre</th>
+        <th>Famille</th>
+        <th>Genre</th>
+        <th>Statut de Conservation</th>
+        <th>Description</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for(animal of animalList; track animal.id) {
+        <tr>
+          <td>{{ animal.nomCommun }}</td>
+          <td>{{ animal.nomSavant }}</td>
+          <td>{{ animal.embranchement }}</td>
+          <td>{{ animal.classe }}</td>
+          <td>{{ animal.ordre }}</td>
+          <td>{{ animal.sousOrdre }}</td>
+          <td>{{ animal.famille }}</td>
+          <td>{{ animal.genre }}</td>
+          <td>{{ animal.StatutIUCN }}</td>
+          <td>{{ animal.description }}</td>
+          <td>
+            @if (animal.id !== undefined) {
+              <button (click)="goToAnimal(animal.id)">Actions</button>
+            }
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+}
+
+@else {
+  <p>Loading...</p>
+}

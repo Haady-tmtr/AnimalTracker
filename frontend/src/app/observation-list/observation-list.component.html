@@ -1,0 +1,34 @@
+@let obsList = observations | async;
+
+<div>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Nom de l'animal</th>
+        <th>Date</th>
+        <th>Heure</th>
+        <th>Latitude</th>
+        <th>Longitude</th>
+        <th>Description</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (observation of obsList; track observation.id) {
+        <tr>
+          <td>{{ observation.animal }}</td>
+          <td>{{ observation.date | date:'shortDate' }}</td>
+          <td>{{ observation.date | date:'shortTime' }}</td>
+          <td>{{ observation.latitude }}</td>
+          <td>{{ observation.longitude }}</td>
+          <td>{{ observation.description }}</td>
+          <td>
+            @if (observation.id) {
+              <button (click)="goToObservation(observation.id)">Actions</button>
+            }
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,55 @@
+@let animalList = animals | async;
+<form #obsForm="ngForm" class="form-container">
+
+    <p>
+      <label>Animal Observé : </label>
+      @if (observation.id === undefined) {
+        <select name="animalObs" [(ngModel)]="observation.animal" required>
+          @for (animal of animalList; track animal.id) {
+            <option [value]="animal.id">{{ animal.nomCommun }}</option>
+          }
+        </select>
+      } @else {
+        <input name="animalObs" [(ngModel)]="observation.animal" readonly>
+      }
+    </p>
+  
+    @if (observation.id === undefined) {
+      <p>
+        <label>Date : </label>
+        <input type="date" name="dateObs" [(ngModel)]="observation.date">
+      </p>
+    } @else {
+      <div>
+        <p>Date : {{ observation.date | date:'shortDate' }}</p>
+        <p>Heure : {{ observation.date | date:'shortTime' }}</p>
+      </div>
+    }
+  
+    <p>
+      <label>Longitude : </label>
+      <input type="number" step="0.01" name="longitude" [(ngModel)]="observation.longitude">
+    </p>
+  
+    <p>
+      <label>Latitude : </label>
+      <input type="number" step="0.01" name="Latitude" [(ngModel)]="observation.latitude">
+    </p>
+  
+    <p>
+      <label>Description : </label>
+      <textarea name="observationDescription" cols="60" rows="8" [(ngModel)]="observation.description"></textarea>
+    </p>
+  
+    <p>
+      @if (observation.id !== undefined) {
+        <button [disabled]="!obsForm.valid" (click)="updateObservation()">Update</button>
+        <button (click)="removeObservation()">Delete</button>
+      } @else {
+        <button [disabled]="!obsForm.valid" (click)="createObservation()">New</button>
+      }
+      <button (click)="goHome()">Cancel</button>
+    </p>
+  
+  </form>
+  

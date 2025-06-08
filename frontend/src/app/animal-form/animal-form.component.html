@@ -1,0 +1,68 @@
+
+<form #animalForm="ngForm" class="form-container">
+
+    <p>
+        <label>Nom : </label>
+        <input type="text" name="animalName" [(ngModel)]="animal.nomCommun" required> 
+    </p>
+    <p>
+        <label>Nom Scientifique : </label>
+        <input type="text" name="animalSName" [(ngModel)]="animal.nomSavant">
+    </p>
+    <p>
+        <label>Embranchement : </label>
+        <input type="text" name="embranchement" [(ngModel)]="animal.embranchement">
+    </p>
+    <p>
+        <label>Classe : </label>
+        <input type="text" name="classe" [(ngModel)]="animal.classe">
+    </p>
+    <p>
+        <label>Ordre : </label>
+        <input type="text" name="ordre" [(ngModel)]="animal.ordre">
+    </p>
+    <p>
+        <label>Sous-Ordre : </label>
+        <input type="text" name="ssordre" [(ngModel)]="animal.sousOrdre">
+    </p>
+    <p>
+        <label>Famille : </label>
+        <input type="text" name="famille" [(ngModel)]="animal.famille">
+    </p>
+    <p>
+        <label>Genre : </label>
+        <input type="text" name="genre" [(ngModel)]="animal.genre">
+    </p>
+    <p>
+        <label>Statut IUCN : </label>
+        <select name="statutIUCN" [(ngModel)]="animal.StatutIUCN">
+            <option value="LC">Préoccupation mineure (LC)</option>
+            <option value="NT">Quasi menacée (NT)</option>
+            <option value="VU">Vulnérable (VU)</option>
+            <option value="EN">En danger (EN)</option>
+            <option value="CR">En danger critique (CR)</option>
+            <option value="EW">Éteinte à l’état sauvage (EW)</option>
+            <option value="EX">Éteinte (EX)</option>
+            <option value="DD">Données insuffisantes (DD)</option>
+            <option value="NE">Non évaluée (NE)</option>
+        </select>
+    </p>
+        
+    <p>
+        <label>Description : </label>
+        <textarea name="animalDescription" cols="60" rows="8" [(ngModel)]="animal.description"></textarea>
+    </p>
+
+    <p>
+        @if (animal.id !== undefined) {
+            <button [disabled]="!animalForm.valid" (click)="updateAnimal()">Update</button>
+            <button (click)="removeAnimal()">Delete</button>
+        } @else {
+            <button [disabled]="!animalForm.valid" (click)="createAnimal()">New</button>
+        }
+        <button (click)="goHome()">Cancel</button>
+    </p>
+    
+    
+
+</form>
